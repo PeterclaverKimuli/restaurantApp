@@ -1,11 +1,13 @@
 import React from 'react';
-import Login from "./application/components/login/Login";
+import { Navigation } from 'react-native-navigation';
 
-export class App extends React.Component{
+import { registerScreens } from './screens';
 
-    render(){
-        return(
-            <Login/>
-        )
+registerScreens(); // this is where you register all of your app's screens
+
+// start the app
+Navigation.startSingleScreenApp({
+    screen:{
+      screen: 'restaurantApp.Login' // this is a registered name for a screen
     }
-}
+});
