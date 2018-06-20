@@ -6,20 +6,17 @@ import { TextField } from 'react-native-material-textfield';
 
 export default class LoginScreen extends React.Component{
     static navigatorStyle = {
-        navBarHidden: true
-    }
-
-    
+        navBarHidden: true,
+        statusBarColor: '#F50057',
+    }   
     constructor(props) {
         super(props);
         this.state = {username: null, password:null};
-
         
         this.props.navigator.setDrawerEnabled({
             side: 'left', 
-            enabled: false 
+            enabled: true 
         });
-
       }
 
     render(){
@@ -58,7 +55,7 @@ export default class LoginScreen extends React.Component{
        if(this.state.username==='john' && this.state.password==='kimuli'){
             this.props.navigator.push({
                 screen: 'restaurantApp.HomePage',
-                title: 'HomePage',
+                title: 'Homepage',
             });
        }
        else{

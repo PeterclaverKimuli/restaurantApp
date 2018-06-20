@@ -5,7 +5,7 @@ import App from '../../App';
 
 
 
-export default class HomePageScreen extends React.Component{
+export default class WaiterScreen extends React.Component{
   static navigatorStyle = {
     navBarBackgroundColor: '#F50057',
     navBarTextColor: '#FFF',
