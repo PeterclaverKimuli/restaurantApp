@@ -9,6 +9,7 @@ import TransactionScreen from './transactions/Transactions';
 import InventoryScreen from './inventory/Inventory';
 import ManagerScreen from './managers/Managers';
 import WaiterScreen from './waiters/Waiters';
+import WaiterInfoScreen from './waiters/WaiterInfo';
 
 // register all screens of the app (including internal ones)
 export function registerScreens() {
@@ -21,4 +22,5 @@ export function registerScreens() {
   Navigation.registerComponent('restaurantApp.Inventory', () => InventoryScreen);
   Navigation.registerComponent('restaurantApp.Managers', () => ManagerScreen);
   Navigation.registerComponent('restaurantApp.Waiters', () => WaiterScreen);
+  Navigation.registerComponent('restaurantApp.WaiterInfo', () => WaiterInfoScreen);
 }

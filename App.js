@@ -8,7 +8,7 @@ registerScreens(); // this is where you register all of your app's screens
 // start the app
 Navigation.startSingleScreenApp({
     screen:{
-      screen: 'restaurantApp.Login', // this is a registered name for a screen
+      screen: 'restaurantApp.Waiters',
       title: 'Login'
     },
     drawer: {
