@@ -69,7 +69,7 @@ export default class WaiterScreen extends React.Component{
             renderItem={({item}) => 
               <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={this.goToManager}>
                 <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
-                      image={require('../img/avatar.png')}
+                      image={require('../img/peterclaver.jpg')}
                       imageStyle={{height: 150, width:260}}>
                   <Text style={{color:'#FFF'}}>Name: {item.key}</Text>
                   <Text style={{color:'#FFF'}}>Branch: {item.branch}</Text>
