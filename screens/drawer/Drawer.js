@@ -29,7 +29,7 @@ export default class DrawerScreen extends React.Component{
             <View style={styles.container}>
                 
                 <ImageBackground source={require('../img/logo.jpg')} style={styles.img}> 
-                    <Text style={{marginBottom: 0, marginLeft:-15, fontSize:16, fontStyle:'italic'}}>Username</Text>
+                    <Text style={{marginTop: 10, marginLeft:3, fontSize:16, fontStyle:'italic'}}>Username</Text>
                 </ImageBackground>
                 
                 <ScrollView>
@@ -75,6 +75,10 @@ export default class DrawerScreen extends React.Component{
 
                     <View style={styles.branchContainer}>
                         <Text style={styles.action}>Actions</Text>
+                        <TouchableOpacity style={styles.actions} onPress = {this.Logout}>
+                            <MaterialIcons name="portrait" size={24} color={'#F50057'}/>   
+                            <Text style={{paddingLeft:20}}>Add User</Text>
+                        </TouchableOpacity>
                         <TouchableOpacity style={styles.actions} onPress = {this.Logout}>
                             <MaterialIcons name="create" size={24} color={'#F50057'}/>   
                             <Text style={{paddingLeft:20}}>Change Password</Text>

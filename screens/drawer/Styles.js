@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     img:{
         flex: 0.4,
         justifyContent: 'flex-end',
-        width:220,
-        marginLeft:25,
-        marginBottom: 3,
+        marginLeft:0,
+        marginBottom: 0,
+        borderBottomWidth: 0.5,
+        borderBottomColor: '#F50057',
     },
     branchContainer:{
-        marginTop: 5,
         borderTopWidth: 0.5,
         borderTopColor: '#F50057',  
     },

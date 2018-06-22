@@ -7,9 +7,11 @@ import DrawerScreen from './drawer/Drawer';
 import BranchScreen from './branch/Branch';
 import TransactionScreen from './transactions/Transactions';
 import InventoryScreen from './inventory/Inventory';
-import ManagerScreen from './managers/Managers';
-import WaiterScreen from './waiters/Waiters';
-import WaiterInfoScreen from './waiters/WaiterInfo';
+import ManagerScreen from './employees/Managers';
+import WaiterScreen from './employees/Waiters';
+import EmployeeInfoScreen from './employees/EmployeeInfo';
+import CustomButton from './buttons/SearchButton';
+import AddButton from './buttons/AddButton';
 
 // register all screens of the app (including internal ones)
 export function registerScreens() {
@@ -22,5 +24,7 @@ export function registerScreens() {
   Navigation.registerComponent('restaurantApp.Inventory', () => InventoryScreen);
   Navigation.registerComponent('restaurantApp.Managers', () => ManagerScreen);
   Navigation.registerComponent('restaurantApp.Waiters', () => WaiterScreen);
-  Navigation.registerComponent('restaurantApp.WaiterInfo', () => WaiterInfoScreen);
+  Navigation.registerComponent('restaurantApp.EmployeeInfo', () => EmployeeInfoScreen);
+  Navigation.registerComponent('CustomButton', () => CustomButton);
+  Navigation.registerComponent('AddButton', () => AddButton);
 }

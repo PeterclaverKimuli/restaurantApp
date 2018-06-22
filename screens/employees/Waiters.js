@@ -1,7 +1,7 @@
 import React from 'react'
 import {FlatList, Text, View, StyleSheet, TouchableHighlight} from "react-native"
-import {DrawerNavigator} from 'react-navigation'
 import {Card} from "react-native-elements"
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 
 
@@ -34,6 +34,16 @@ export default class WaiterScreen extends React.Component{
         buttonFontSize: 16, 
         buttonFontWeight: '600' 
       }
+    ],
+    rightButtons: [
+      {
+        id: 'search',
+        component: 'CustomButton'
+      },
+      {
+        id: 'add',
+        component: 'AddButton'
+      }
     ]
   }
 
@@ -54,14 +64,14 @@ export default class WaiterScreen extends React.Component{
       <View style={styles.container}>
         <FlatList
             data={[
-              {key: 'Waiter 1', branch:'Branch 1'},
+              {key: 'Waiter', branch:'Branch 1'},
               {key: 'Waiter 2', branch:'Branch 2'},
               {key: 'Waiter 3', branch:'Branch 3'},
               {key: 'Waiter 4', branch:'Branch 4'},
               {key: 'Waiter 5', branch:'Branch 5'}
           ]}
             renderItem={({item}) => 
-              <TouchableHighlight style={{marginLeft:40}} underlayColor="#F50057" onPress={this.goToWaiter}>
+              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={this.goToWaiter}>
                 <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
                       image={require('../img/avatar.png')}
                       imageStyle={{height: 150, width:260}}>
@@ -78,8 +88,8 @@ export default class WaiterScreen extends React.Component{
 
   goToWaiter = () => {
     this.props.navigator.push({
-        screen: 'restaurantApp.WaiterInfo',
-        title: 'Branch'
+        screen: 'restaurantApp.EmployeeInfo',
+        title: 'WaiterInfo'
     });  
     this.props.navigator.toggleDrawer({
         side: 'left', 

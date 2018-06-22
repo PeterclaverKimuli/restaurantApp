@@ -15,7 +15,7 @@ export default class LoginScreen extends React.Component{
         
         this.props.navigator.setDrawerEnabled({
             side: 'left', 
-            enabled: true 
+            enabled: false
         });
       }
 

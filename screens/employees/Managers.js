@@ -1,6 +1,5 @@
 import React from 'react'
 import {FlatList, Text, View, StyleSheet, TouchableHighlight} from "react-native"
-import {DrawerNavigator} from 'react-navigation'
 import {Card} from "react-native-elements"
 
 
@@ -34,6 +33,13 @@ export default class WaiterScreen extends React.Component{
         buttonFontSize: 16, 
         buttonFontWeight: '600' 
       }
+    ],
+    rightButtons: [
+      {
+        id: 'search',
+        component: 'CustomButton',
+        buttonColor: '#FFF'
+      }
     ]
   }
 
@@ -54,14 +60,14 @@ export default class WaiterScreen extends React.Component{
       <View style={styles.container}>
         <FlatList
             data={[
-              {key: 'Waiter 1', branch:'Branch 1'},
-              {key: 'Waiter 2', branch:'Branch 2'},
-              {key: 'Waiter 3', branch:'Branch 3'},
-              {key: 'Waiter 4', branch:'Branch 4'},
-              {key: 'Waiter 5', branch:'Branch 5'}
+              {key: 'Manager 1', branch:'Branch 1'},
+              {key: 'Manager 2', branch:'Branch 2'},
+              {key: 'Manager 3', branch:'Branch 3'},
+              {key: 'Manager 4', branch:'Branch 4'},
+              {key: 'Manager 5', branch:'Branch 5'}
           ]}
             renderItem={({item}) => 
-              <TouchableHighlight style={{marginLeft:40}} underlayColor="#F50057" onPress={this.goToWaiter}>
+              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={this.goToManager}>
                 <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
                       image={require('../img/avatar.png')}
                       imageStyle={{height: 150, width:260}}>
@@ -76,10 +82,10 @@ export default class WaiterScreen extends React.Component{
     )
   }
 
-  goToWaiter = () => {
+  goToManager = () => {
     this.props.navigator.push({
-        screen: 'restaurantApp.WaiterInfo',
-        title: 'Branch'
+        screen: 'restaurantApp.EmployeeInfo',
+        title: 'ManagerInfo'
     });  
     this.props.navigator.toggleDrawer({
         side: 'left', 
