@@ -1,6 +1,5 @@
 import React from 'react'
 import {SectionList, Text, View, StyleSheet, TouchableHighlight} from "react-native"
-import {DrawerNavigator} from 'react-navigation'
 import {Card} from "react-native-elements"
 
 

@@ -2,6 +2,9 @@ import React from 'react';
 import { Navigation } from 'react-native-navigation';
 
 import { registerScreens } from './screens';
+import { YellowBox } from 'react-native';
+
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader'])
 
 registerScreens(); 
 
@@ -9,7 +12,7 @@ registerScreens();
 Navigation.startSingleScreenApp({
     screen:{
       screen: 'restaurantApp.Login',
-      title: 'Login'
+      title: 'Login',
     },
     drawer: {
       left: {

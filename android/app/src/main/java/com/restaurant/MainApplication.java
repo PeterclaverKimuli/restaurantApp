@@ -4,7 +4,9 @@ import android.support.annotation.Nullable;
 
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
+import com.facebook.react.shell.MainReactPackage;
 
+import java.util.Arrays;
 import java.util.List;
 
 

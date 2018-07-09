@@ -19,6 +19,7 @@ export default class WaiterScreen extends React.Component{
         enabled: true
     });
 
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
   }
 
   static navigatorButtons = {
@@ -38,9 +39,14 @@ export default class WaiterScreen extends React.Component{
       {
         id: 'search',
         component: 'CustomButton',
-        buttonColor: '#FFF'
       }
-    ]
+    ],
+    fab: {
+      collapsedId: 'add',
+      collapsedIcon: require('../img/add_user.png'),
+      collapsedIconColor: '#FFF', // optional
+      backgroundColor: '#F50057'
+    }
   }
 
   onNavigatorEvent(event) { 
@@ -50,6 +56,13 @@ export default class WaiterScreen extends React.Component{
           side: 'left',
           animated: true, // does the toggle have transition animation or does it happen immediately (optional)
           to: 'open', // optional, 'open' = open the drawer, 'closed' = close it, missing = the opposite of current state
+        });
+      }
+      
+      if (event.id == 'add') { 
+        this.props.navigator.push({
+          screen: 'restaurantApp.InputInfo',
+          title: 'Add user'
         });
       }
     }
@@ -69,7 +82,7 @@ export default class WaiterScreen extends React.Component{
             renderItem={({item}) => 
               <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={this.goToManager}>
                 <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
-                      image={require('../img/peterclaver.jpg')}
+                      image={require('../img/avatar.png')}
                       imageStyle={{height: 150, width:260}}>
                   <Text style={{color:'#FFF'}}>Name: {item.key}</Text>
                   <Text style={{color:'#FFF'}}>Branch: {item.branch}</Text>

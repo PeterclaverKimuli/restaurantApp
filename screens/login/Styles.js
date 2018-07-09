@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     buttonContainer:{
         alignSelf: 'stretch',
         margin: 20,
+        marginTop:25,
         padding: 20,
         backgroundColor: '#F50057',
         borderWidth: 1,

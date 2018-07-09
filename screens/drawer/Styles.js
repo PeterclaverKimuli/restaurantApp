@@ -17,12 +17,6 @@ const styles = StyleSheet.create({
         borderTopWidth: 0.5,
         borderTopColor: '#F50057',  
     },
-    branches:{
-        fontSize: 15,
-        padding: 5,
-        marginLeft: 5,
-        fontWeight: 'bold'
-    },
     branch: {
         paddingLeft: 3,
         paddingTop: 10,

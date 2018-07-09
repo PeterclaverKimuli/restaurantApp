@@ -49,7 +49,7 @@ export default class DrawerScreen extends React.Component{
                     </View>
 
                     <View style={styles.branchContainer}>
-                        <Text style={styles.branches}>Branches</Text>
+                        <Text style={styles.action}>Branches</Text>
                         <FlatList
                             data={this.branches}
                             renderItem={({item}) => 
@@ -75,13 +75,17 @@ export default class DrawerScreen extends React.Component{
 
                     <View style={styles.branchContainer}>
                         <Text style={styles.action}>Actions</Text>
-                        <TouchableOpacity style={styles.actions} onPress = {this.Logout}>
+                        <TouchableOpacity style={styles.actions} onPress = {this.goToAddUser}>
                             <MaterialIcons name="portrait" size={24} color={'#F50057'}/>   
                             <Text style={{paddingLeft:20}}>Add User</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.actions} onPress = {this.Logout}>
+                        <TouchableOpacity style={styles.actions} onPress = {this.changePassword}>
                             <MaterialIcons name="create" size={24} color={'#F50057'}/>   
                             <Text style={{paddingLeft:20}}>Change Password</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.actions} onPress = {this.Logout}>
+                            <MaterialIcons name="help" size={24} color={'#F50057'}/>   
+                            <Text style={{paddingLeft:20}}>Help</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.actions} onPress = {this.Logout}>
                             <Entypo name="log-out" size={24} color={'#F50057'}/>
@@ -106,9 +110,16 @@ export default class DrawerScreen extends React.Component{
         });     
     }
 
-    setTitle = (branchName) => {
-        this.setState({title:branchName})
-        return this.state.title
+    goToAddUser = () => {
+        this.props.navigator.push({
+            screen: 'restaurantApp.InputInfo',
+            title: 'Add user'
+        });  
+        this.props.navigator.toggleDrawer({
+            side: 'left', 
+            animated: true, 
+            to: 'missing' 
+          });    
     }
 
     goToBranch = () => {
@@ -173,6 +184,17 @@ export default class DrawerScreen extends React.Component{
         this.props.navigator.push({
             screen: 'restaurantApp.Waiters',
             title: 'Waiters',
+        });  
+        this.props.navigator.toggleDrawer({
+            side: 'left', 
+            animated: true, 
+            to: 'missing' 
+          });            
+    }
+    changePassword = () =>{
+        this.props.navigator.push({
+            screen: 'restaurantApp.ChangePassword',
+            title: 'Reset Password',
         });  
         this.props.navigator.toggleDrawer({
             side: 'left', 

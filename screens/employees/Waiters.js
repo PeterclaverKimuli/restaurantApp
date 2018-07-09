@@ -20,6 +20,7 @@ export default class WaiterScreen extends React.Component{
         enabled: true
     });
 
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
   }
 
   static navigatorButtons = {
@@ -38,13 +39,15 @@ export default class WaiterScreen extends React.Component{
     rightButtons: [
       {
         id: 'search',
-        component: 'CustomButton'
-      },
-      {
-        id: 'add',
-        component: 'AddButton'
+        component: 'CustomButton',
       }
-    ]
+    ],
+    fab: {
+      collapsedId: 'add',
+      collapsedIcon: require('../img/add_user.png'),
+      collapsedIconColor: '#FFF', // optional
+      backgroundColor: '#F50057'
+    }
   }
 
   onNavigatorEvent(event) { 
@@ -54,6 +57,13 @@ export default class WaiterScreen extends React.Component{
           side: 'left',
           animated: true, // does the toggle have transition animation or does it happen immediately (optional)
           to: 'open', // optional, 'open' = open the drawer, 'closed' = close it, missing = the opposite of current state
+        });
+      }
+
+      if (event.id == 'add') { 
+        this.props.navigator.push({
+          screen: 'restaurantApp.InputInfo',
+          title: 'Add user'
         });
       }
     }
