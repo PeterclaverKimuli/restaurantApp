@@ -6,11 +6,11 @@ export default class EmployeeInfoScreen extends React.Component{
     navBarBackgroundColor: '#F50057',
     navBarTextColor: '#FFF',
     statusBarColor: '#F50057',
-    navBarButtonColor: '#FFF'
+    navBarButtonColor: '#FFF',
 }  
 
   constructor(props) {
-    super(props)
+    super(props);
 
   }
 
