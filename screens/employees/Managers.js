@@ -20,10 +20,12 @@ export default class WaiterScreen extends React.Component{
     });
 
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+    this.props.navigator.setButtons(this.navigatorButtons(this.props.navigator))
   }
 
-  static navigatorButtons = {
-    leftButtons: [
+  navigatorButtons = (navigator) => {
+    return {
+      leftButtons: [
       {
         title: 'Side Menu',
         id: 'sideMenu', 
@@ -34,18 +36,22 @@ export default class WaiterScreen extends React.Component{
         buttonFontSize: 16, 
         buttonFontWeight: '600' 
       }
-    ],
-    rightButtons: [
-      {
-        id: 'search',
-        component: 'CustomButton',
+      ],
+      rightButtons: [
+        {
+          id: 'search',
+          component: 'CustomButton',
+          passProps: {
+            navigator
+          }
+        }
+      ],
+      fab: {
+        collapsedId: 'add',
+        collapsedIcon: require('../img/add_user.png'),
+        collapsedIconColor: '#FFF', // optional
+        backgroundColor: '#F50057'
       }
-    ],
-    fab: {
-      collapsedId: 'add',
-      collapsedIcon: require('../img/add_user.png'),
-      collapsedIconColor: '#FFF', // optional
-      backgroundColor: '#F50057'
     }
   }
 
@@ -80,7 +86,7 @@ export default class WaiterScreen extends React.Component{
               {key: 'Manager 5', branch:'Branch 5'}
           ]}
             renderItem={({item}) => 
-              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={this.goToManager}>
+              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToManager(item.key)}>
                 <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
                       image={require('../img/avatar.png')}
                       imageStyle={{height: 150, width:260}}>
@@ -95,10 +101,10 @@ export default class WaiterScreen extends React.Component{
     )
   }
 
-  goToManager = () => {
+  goToManager = (title) => {
     this.props.navigator.push({
         screen: 'restaurantApp.EmployeeInfo',
-        title: 'ManagerInfo'
+        title: title
     });  
     this.props.navigator.toggleDrawer({
         side: 'left', 

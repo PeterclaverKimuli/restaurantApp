@@ -88,7 +88,7 @@ export default class WaiterScreen extends React.Component{
               {key: 'Waiter 5', branch:'Branch 5'}
           ]}
             renderItem={({item}) => 
-              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={this.goToWaiter}>
+              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToWaiter(item.key)}>
                 <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
                       image={require('../img/avatar.png')}
                       imageStyle={{height: 150, width:260}}>
@@ -103,22 +103,10 @@ export default class WaiterScreen extends React.Component{
     )
   }
 
-  goToWaiter = () => {
+  goToWaiter = (title) => {
     this.props.navigator.push({
         screen: 'restaurantApp.EmployeeInfo',
-        title: 'WaiterInfo'
-    });  
-    this.props.navigator.toggleDrawer({
-        side: 'left', 
-        animated: true, 
-        to: 'missing' 
-      });    
-  }
-
-  Search(){
-    this.props.navigator.push({
-        screen: 'restaurantApp.EmployeeInfo',
-        title: 'WaiterInfo'
+        title: title
     });  
     this.props.navigator.toggleDrawer({
         side: 'left', 

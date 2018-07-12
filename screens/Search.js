@@ -72,12 +72,13 @@ export default class SearchScreen extends Component {
           }
           </View>
           <SearchBar
-          ref={(ref) => this.searchBar = ref}
-          data={items}
-          handleResults={this._handleResults}
-          iconColor = '#F50057'
-          showOnLoad
-          onBack = {this.onPress}
+            placeholder = 'Search...'
+            ref={(ref) => this.searchBar = ref}
+            data={items}
+            handleResults={this._handleResults}
+            iconColor = '#F50057'
+            showOnLoad
+            onBack = {this.onPress}
           />
       </View>
     )
