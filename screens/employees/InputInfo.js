@@ -16,6 +16,12 @@ const data = [{
     value: 'Waiteress'
 }]
 
+const gender = [{
+    value: 'Male'
+},{
+    value: 'Female'
+}]
+
 const branches = [{
     value: 'Branch 1'
 },{
@@ -38,7 +44,7 @@ export default class InputInfoScreen extends React.Component{
     this.state = {firstname: null, lastname:null, phonenumber:null,
                   email: '', role:null, branch:null, birthday:null,
                   address:null, username:null, password:null, password1:null,
-                  image:null};
+                  image:null, gender:null};
     
     this.props.navigator.setDrawerEnabled({
         side: 'left', 
@@ -52,6 +58,7 @@ export default class InputInfoScreen extends React.Component{
     this.onSubmitBirthday = this.onSubmitBirthday.bind(this);
     this.onSubmitRole = this.onSubmitRole.bind(this);
     this.onSubmitBranch = this.onSubmitBranch.bind(this);
+    this.onSubmitGender = this.onSubmitGender.bind(this);
     this.onSubmitUsername = this.onSubmitUsername.bind(this);
     this.onSubmitPassword = this.onSubmitPassword.bind(this);
     this.onSubmitPassword1 = this.onSubmitPassword1.bind(this);
@@ -65,6 +72,7 @@ export default class InputInfoScreen extends React.Component{
     this.addressRef = this.updateRef.bind(this, 'address');
     this.roleRef = this.updateRef.bind(this, 'role');
     this.branchRef = this.updateRef.bind(this, 'branch');
+    this.genderRef = this.updateRef.bind(this, 'gender');
     this.usernameRef = this.updateRef.bind(this, 'username');
     this.passwordRef = this.updateRef.bind(this, 'password');
     this.password1Ref = this.updateRef.bind(this, 'password1');
@@ -107,6 +115,10 @@ export default class InputInfoScreen extends React.Component{
   }
 
   onSubmitBranch(){
+    this.gender.focus();
+  }
+
+  onSubmitGender(){
     this.username.focus();
   }
 
@@ -302,7 +314,8 @@ renderImage(image) {
                             onChangeText={ (firstname) => this.setState({ firstname:firstname })}  
                             containerStyle={{flex:1}}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 <View style={styles.actions}>
@@ -316,7 +329,8 @@ renderImage(image) {
                             onChangeText={ (lastname) => this.setState({ lastname:lastname })} 
                             containerStyle={styles.input}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 <View style={styles.actions}>
@@ -329,7 +343,8 @@ renderImage(image) {
                             onChangeText={ (birthday) => this.setState({ birthday:birthday })} 
                             containerStyle={styles.input}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 <View style={styles.actions}>
@@ -342,7 +357,8 @@ renderImage(image) {
                             onChangeText={ (address) => this.setState({ address:address })} 
                             containerStyle={styles.input}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 
@@ -357,7 +373,8 @@ renderImage(image) {
                             data = {data}
                             containerStyle={styles.inputNoImage}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 
@@ -373,7 +390,24 @@ renderImage(image) {
                             data = {branches}
                             containerStyle={styles.inputNoImage}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
+                </View>
+
+                <View style={styles.actions}>
+                    <Image style={styles.ImageStyle}/>
+                    <Dropdown label='Gender'
+                            ref = {this.genderRef}
+                            onSubmitEditing = {this.onSubmitGender}
+                            onFocus={this.onFocus}
+                            returnKeyType = { "next" }
+                            error={errors.gender}
+                            onChangeText={ (gender) => this.setState({ gender:gender })} 
+                            data = {gender}
+                            containerStyle={styles.inputNoImage}
+                            tintColor="#F50057"
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 <View style={styles.actions}>
@@ -388,7 +422,8 @@ renderImage(image) {
                             onChangeText={ (username) => this.setState({ username:username })} 
                             containerStyle={styles.inputNoImage}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 <View style={styles.actions}>
@@ -407,7 +442,8 @@ renderImage(image) {
                             onChangeText={ (password) => this.setState({ password:password })} 
                             containerStyle={styles.input}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 <View style={styles.actions}>
@@ -425,7 +461,8 @@ renderImage(image) {
                             onChangeText={ (password1) => this.setState({ password1:password1 })} 
                             containerStyle={styles.input}
                             tintColor="#F50057"
-                            textColor="#F50057"/>
+                            textColor="#F50057"
+                            baseColor = '#000'/>
                 </View>
 
                 <View style={styles.actions}>
@@ -440,6 +477,7 @@ renderImage(image) {
                             containerStyle={styles.input}
                             tintColor="#F50057"
                             textColor="#F50057"
+                            baseColor = '#000'
                             keyboardType="phone-pad"/>
                 </View>
 
@@ -454,6 +492,7 @@ renderImage(image) {
                             containerStyle={styles.input}
                             tintColor="#F50057"
                             textColor="#F50057"
+                            baseColor = '#000'
                             keyboardType="email-address"/>
                 </View>
             </View>

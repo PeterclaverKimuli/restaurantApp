@@ -12,6 +12,7 @@ import WaiterScreen from './employees/Waiters';
 import EmployeeInfoScreen from './employees/EmployeeInfo';
 import InputInfoScreen from './employees/InputInfo';
 import ChangePasswordScreen from './login/ChangePassword'
+import SearchScreen from './Search'
 import CustomButton from './buttons/SearchButton';
 
 // register all screens of the app (including internal ones)
@@ -28,5 +29,6 @@ export function registerScreens() {
   Navigation.registerComponent('restaurantApp.EmployeeInfo', () => EmployeeInfoScreen);
   Navigation.registerComponent('restaurantApp.InputInfo', () => InputInfoScreen);
   Navigation.registerComponent('restaurantApp.ChangePassword', () => ChangePasswordScreen);
+  Navigation.registerComponent('restaurantApp.Search', () => SearchScreen);
   Navigation.registerComponent('CustomButton', () => CustomButton);
 }

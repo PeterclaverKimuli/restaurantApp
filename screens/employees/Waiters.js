@@ -4,7 +4,6 @@ import {Card} from "react-native-elements"
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 
-
 export default class WaiterScreen extends React.Component{
   static navigatorStyle = {
     navBarBackgroundColor: '#F50057',
@@ -21,10 +20,13 @@ export default class WaiterScreen extends React.Component{
     });
 
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    this.props.navigator.setButtons(this.navigatorButtons(this.props.navigator))
+    this.goToWaiter = this.goToWaiter.bind(this)
   }
 
-  static navigatorButtons = {
-    leftButtons: [
+  navigatorButtons = (navigator) => {
+    return {
+      leftButtons: [
       {
         title: 'Side Menu',
         id: 'sideMenu', 
@@ -35,18 +37,22 @@ export default class WaiterScreen extends React.Component{
         buttonFontSize: 16, 
         buttonFontWeight: '600' 
       }
-    ],
-    rightButtons: [
-      {
-        id: 'search',
-        component: 'CustomButton',
+      ],
+      rightButtons: [
+        {
+          id: 'search',
+          component: 'CustomButton',
+          passProps: {
+            navigator
+          }
+        }
+      ],
+      fab: {
+        collapsedId: 'add',
+        collapsedIcon: require('../img/add_user.png'),
+        collapsedIconColor: '#FFF', // optional
+        backgroundColor: '#F50057'
       }
-    ],
-    fab: {
-      collapsedId: 'add',
-      collapsedIcon: require('../img/add_user.png'),
-      collapsedIconColor: '#FFF', // optional
-      backgroundColor: '#F50057'
     }
   }
 
@@ -63,7 +69,8 @@ export default class WaiterScreen extends React.Component{
       if (event.id == 'add') { 
         this.props.navigator.push({
           screen: 'restaurantApp.InputInfo',
-          title: 'Add user'
+          title: 'Add user',
+          animation: false
         });
       }
     }
@@ -106,7 +113,19 @@ export default class WaiterScreen extends React.Component{
         animated: true, 
         to: 'missing' 
       });    
-}
+  }
+
+  Search(){
+    this.props.navigator.push({
+        screen: 'restaurantApp.EmployeeInfo',
+        title: 'WaiterInfo'
+    });  
+    this.props.navigator.toggleDrawer({
+        side: 'left', 
+        animated: true, 
+        to: 'missing' 
+      });    
+  }
     
 }
 

@@ -112,6 +112,8 @@ export default class LoginScreen extends React.Component{
             this.props.navigator.push({
                 screen: 'restaurantApp.HomePage',
                 title: 'Homepage',
+                animated: true, 
+                animationType: 'fade'
             });
             this.username.clear()
             this.password.clear()
