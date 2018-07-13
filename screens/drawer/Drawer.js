@@ -53,7 +53,7 @@ export default class DrawerScreen extends React.Component{
                         <FlatList
                             data={this.branches}
                             renderItem={({item}) => 
-                                <TouchableOpacity style={styles.branch} onPress = {this.goToBranch}>
+                                <TouchableOpacity style={styles.branch} onPress = {() => this.goToBranch(item.key)}>
                                     <MaterialIcons name="store" size={24} color={'#F50057'}/>
                                     <Text style={{paddingLeft:20}}>{item.key}</Text>
                                 </TouchableOpacity>
@@ -122,10 +122,10 @@ export default class DrawerScreen extends React.Component{
           });    
     }
 
-    goToBranch = () => {
+    goToBranch = (title) => {
         this.props.navigator.push({
             screen: 'restaurantApp.Branch',
-            title: 'Branch'
+            title: title
         });  
         this.props.navigator.toggleDrawer({
             side: 'left', 
