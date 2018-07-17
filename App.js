@@ -11,7 +11,7 @@ registerScreens();
 // start the app
 Navigation.startSingleScreenApp({
     screen:{
-      screen: 'restaurantApp.Login',
+      screen: 'restaurantApp.Menu',
       title: 'Login'
     },
     drawer: {

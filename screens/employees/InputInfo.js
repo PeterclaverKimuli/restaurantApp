@@ -5,6 +5,7 @@ import { TextField } from 'react-native-material-textfield'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { ConfirmDialog } from 'react-native-simple-dialogs'
 import ImagePicker from 'react-native-image-crop-picker';
+import DatePicker from 'react-native-datepicker'
 
 const data = [{
     value: 'Owner'
@@ -44,7 +45,7 @@ export default class InputInfoScreen extends React.Component{
     this.state = {firstname: null, lastname:null, phonenumber:null,
                   email: '', role:null, branch:null, birthday:null,
                   address:null, username:null, password:null, password1:null,
-                  image:null, gender:null};
+                  image:null, gender:null, date:null};
     
     this.props.navigator.setDrawerEnabled({
         side: 'left', 
@@ -55,7 +56,6 @@ export default class InputInfoScreen extends React.Component{
     this.onSubmit = this.onSubmit.bind(this);
     this.onSubmitFirstname = this.onSubmitFirstname.bind(this);
     this.onSubmitLastname = this.onSubmitLastname.bind(this);
-    this.onSubmitBirthday = this.onSubmitBirthday.bind(this);
     this.onSubmitRole = this.onSubmitRole.bind(this);
     this.onSubmitBranch = this.onSubmitBranch.bind(this);
     this.onSubmitGender = this.onSubmitGender.bind(this);
@@ -68,7 +68,6 @@ export default class InputInfoScreen extends React.Component{
     
     this.firstnameRef = this.updateRef.bind(this, 'firstname');
     this.lastnameRef = this.updateRef.bind(this, 'lastname');
-    this.birthdayRef = this.updateRef.bind(this, 'birthday');
     this.addressRef = this.updateRef.bind(this, 'address');
     this.roleRef = this.updateRef.bind(this, 'role');
     this.branchRef = this.updateRef.bind(this, 'branch');
@@ -99,11 +98,7 @@ export default class InputInfoScreen extends React.Component{
   }
 
   onSubmitLastname() {
-    this.birthday.focus();
-  }
-
-  onSubmitBirthday() {
-    this.address.focus();
+    this.lastname.blur();
   }
 
   onSubmitAddress() {
@@ -334,17 +329,42 @@ renderImage(image) {
                 </View>
 
                 <View style={styles.actions}>
-                    <Image source={require('../img/date.png')} style={styles.ImageStyle}/>
-                    <TextField label='Birthday'
-                            ref = {this.birthdayRef}
-                            onSubmitEditing = {this.onSubmitBirthday}
-                            onFocus={this.onFocus}
-                            returnKeyType = { "next" }
-                            onChangeText={ (birthday) => this.setState({ birthday:birthday })} 
-                            containerStyle={styles.input}
-                            tintColor="#F50057"
-                            textColor="#F50057"
-                            baseColor = '#000'/>
+                    <DatePicker
+                            style={{width: 300}}
+                            date={this.state.date}
+                            mode="date"
+                            placeholder="Bithday"
+                            format="DD-MM-YYYY"
+                            minDate="01-01-1900"
+                            maxDate="01-01-2100"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    left: -6,
+                                    top: 4,
+                                    marginLeft: 3,
+                                },
+                                dateInput: {
+                                    marginLeft: 41,
+                                    borderWidth: 0,
+                                    borderBottomWidth: 1,
+                                    borderBottomColor: '#aaa',
+                                    alignItems: 'flex-start',
+                                }, 
+                                dateText: {
+                                    color: '#F50057',
+                                    fontSize: 16,
+                                },
+                                placeholderText: {
+                                    color: '#000',
+                                    fontSize: 16
+                                }
+                            // ... You can check the source to find the other keys.
+                            }}
+                            onDateChange={(date) => {this.setState({date: date})}}
+                    />
                 </View>
 
                 <View style={styles.actions}>

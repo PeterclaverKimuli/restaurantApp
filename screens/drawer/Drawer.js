@@ -4,6 +4,8 @@ import {FlatList, Text, View, Image, ScrollView, ImageBackground,
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Entypo from 'react-native-vector-icons/Entypo';
 import styles from './Styles'
+import MyView from './hideBranches';
+
 
 export default class DrawerScreen extends React.Component{
     static navigatorStyle = {
@@ -13,7 +15,9 @@ export default class DrawerScreen extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {title: null}
+        this.state = {title: null, isHidden: false}
+
+        this.Hide = this.Hide.bind(this)
 
         this.branches = [
             {key: 'Branch 1'},
@@ -22,6 +26,10 @@ export default class DrawerScreen extends React.Component{
             {key: 'Branch 4'},
             {key: 'Branch 5'}
         ]
+    }
+    
+    Hide = () =>{
+        this.branches.length === 1 ? this.state.isHidden : !this.state.isHidden
     }
 
     render(){
@@ -46,9 +54,15 @@ export default class DrawerScreen extends React.Component{
                             <MaterialIcons name="shopping-cart" size={24} color={'#F50057'}/>   
                             <Text style={{paddingLeft:20}}>Inventory</Text>
                         </TouchableOpacity>
+                        <MyView hide={this.branches.length === 1 ? this.state.isHidden : !this.state.isHidden}>
+                            <TouchableOpacity style={styles.actions} onPress = {this.goToMenu}>
+                                <MaterialIcons name="restaurant-menu" size={24} color={'#F50057'}/>   
+                                <Text style={{paddingLeft:20}}>Menu</Text>
+                            </TouchableOpacity>
+                        </MyView>
                     </View>
 
-                    <View style={styles.branchContainer}>
+                    <MyView style={styles.branchContainer} hide={this.branches.length === 1 ? !this.state.isHidden : this.state.isHidden}>
                         <Text style={styles.action}>Branches</Text>
                         <FlatList
                             data={this.branches}
@@ -59,7 +73,7 @@ export default class DrawerScreen extends React.Component{
                                 </TouchableOpacity>
                             }
                         />
-                    </View>
+                    </MyView>
 
                     <View style={styles.branchContainer}>
                         <Text style={styles.action}>Employees</Text>
@@ -167,8 +181,21 @@ export default class DrawerScreen extends React.Component{
             side: 'left', 
             animated: true, 
             to: 'missing' 
-          });            
+        });            
     }
+
+    goToMenu = () =>{
+        this.props.navigator.push({
+            screen: 'restaurantApp.Menu',
+            title: 'Menu',
+        });  
+        this.props.navigator.toggleDrawer({
+            side: 'left', 
+            animated: true, 
+            to: 'missing' 
+        });            
+    }
+
     goToManagers = () =>{
         this.props.navigator.push({
             screen: 'restaurantApp.Managers',
