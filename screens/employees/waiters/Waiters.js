@@ -11,19 +11,6 @@ export default class WaiterScreen extends React.Component{
     statusBarColor: '#F50057'
   }
 
-  constructor(props) {
-    super(props);
-    
-    this.props.navigator.setDrawerEnabled({
-        side: 'left', 
-        enabled: true
-    });
-
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
-    this.props.navigator.setButtons(this.navigatorButtons(this.props.navigator))
-    this.goToWaiter = this.goToWaiter.bind(this)
-  }
-
   navigatorButtons = (navigator) => {
     return {
       leftButtons: [
@@ -46,14 +33,30 @@ export default class WaiterScreen extends React.Component{
             navigator
           }
         }
-      ],
-      fab: {
-        collapsedId: 'add',
-        collapsedIcon: require('../img/add_user.png'),
-        collapsedIconColor: '#FFF', // optional
-        backgroundColor: '#F50057'
-      }
+      ]
     }
+  }
+
+  static navigatorButtons = {
+    fab: {
+      collapsedId: 'add',
+      collapsedIcon: require('../../img/add_user.png'),
+      collapsedIconColor: '#FFF', // optional
+      backgroundColor: '#F50057'
+    }
+  }
+
+  constructor(props) {
+    super(props);
+    
+    this.props.navigator.setDrawerEnabled({
+        side: 'left', 
+        enabled: true
+    });
+
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    this.props.navigator.setButtons(this.navigatorButtons(this.props.navigator))
+    this.goToWaiter = this.goToWaiter.bind(this)
   }
 
   onNavigatorEvent(event) { 
@@ -70,7 +73,21 @@ export default class WaiterScreen extends React.Component{
         this.props.navigator.push({
           screen: 'restaurantApp.InputInfo',
           title: 'Add user',
-          animation: false
+          animation: false,
+          navigatorButtons: {
+            leftButtons: [
+              {
+                title: 'Back',
+                id: 'back', 
+                disabled: false, 
+                disableIconTint: false, // optional, by default the image colors are overridden and tinted to navBarButtonColor, set to true to keep the original image colors
+                showAsAction: 'ifRoom', // optional, Android only. Control how the button is displayed in the Toolbar. Accepted valued: 'ifRoom' (default) - Show this item as a button in an Action Bar if the system decides there is room for it. 'always' - Always show this item as a button in an Action Bar. 'withText' - When this item is in the action bar, always show it with a text label even if it also has an icon specified. 'never' - Never show this item as a button in an Action Bar.
+                buttonColor: '#FFF',
+                buttonFontSize: 16, 
+                buttonFontWeight: '600' 
+              }
+            ]
+          }
         });
       }
     }
@@ -88,10 +105,10 @@ export default class WaiterScreen extends React.Component{
               {key: 'Waiter 5', branch:'Branch 5'}
           ]}
             renderItem={({item}) => 
-              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToWaiter(item.key)}>
-                <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
-                      image={require('../img/avatar.png')}
-                      imageStyle={{height: 150, width:260}}>
+              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToWaiter(item.key, item.branch)}>
+                <Card containerStyle={{borderRadius:5, height:200, width:240, backgroundColor:'#F50057'}}
+                      image={require('../../img/avatar.png')}
+                      imageStyle={{height: 130, width:240}}>
                   <Text style={{color:'#FFF'}}>Name: {item.key}</Text>
                   <Text style={{color:'#FFF'}}>Branch: {item.branch}</Text>
                   <Text style={{color:'#0D47A1'}}>Press for more...</Text>
@@ -103,10 +120,14 @@ export default class WaiterScreen extends React.Component{
     )
   }
 
-  goToWaiter = (title) => {
+  goToWaiter = (title, branch) => {
     this.props.navigator.push({
         screen: 'restaurantApp.EmployeeInfo',
-        title: title
+        title: title,
+        passProps:{
+          name: title,
+          branch: branch
+        }
     });  
     this.props.navigator.toggleDrawer({
         side: 'left', 

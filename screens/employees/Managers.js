@@ -11,18 +11,6 @@ export default class WaiterScreen extends React.Component{
     statusBarColor: '#F50057'
   }
 
-  constructor(props) {
-    super(props);
-    
-    this.props.navigator.setDrawerEnabled({
-        side: 'left', 
-        enabled: true
-    });
-
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
-    this.props.navigator.setButtons(this.navigatorButtons(this.props.navigator))
-  }
-
   navigatorButtons = (navigator) => {
     return {
       leftButtons: [
@@ -45,14 +33,30 @@ export default class WaiterScreen extends React.Component{
             navigator
           }
         }
-      ],
-      fab: {
-        collapsedId: 'add',
-        collapsedIcon: require('../img/add_user.png'),
-        collapsedIconColor: '#FFF', // optional
-        backgroundColor: '#F50057'
-      }
+      ]
     }
+  }
+
+  static navigatorButtons = {
+    fab: {
+      collapsedId: 'add',
+      collapsedIcon: require('../img/add_user.png'),
+      collapsedIconColor: '#FFF', // optional
+      backgroundColor: '#F50057'
+    }
+  }
+
+  constructor(props) {
+    super(props);
+    
+    this.props.navigator.setDrawerEnabled({
+        side: 'left', 
+        enabled: true
+    });
+
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+    this.props.navigator.setButtons(this.navigatorButtons(this.props.navigator))
+    this.goToManager = this.goToManager.bind(this)
   }
 
   onNavigatorEvent(event) { 
@@ -86,7 +90,7 @@ export default class WaiterScreen extends React.Component{
               {key: 'Manager 5', branch:'Branch 5'}
           ]}
             renderItem={({item}) => 
-              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToManager(item.key)}>
+              <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToManager(item.key, item.branch)}>
                 <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
                       image={require('../img/avatar.png')}
                       imageStyle={{height: 150, width:260}}>
@@ -101,16 +105,15 @@ export default class WaiterScreen extends React.Component{
     )
   }
 
-  goToManager = (title) => {
+  goToManager = (title, branch) => {
     this.props.navigator.push({
         screen: 'restaurantApp.EmployeeInfo',
-        title: title
-    });  
-    this.props.navigator.toggleDrawer({
-        side: 'left', 
-        animated: true, 
-        to: 'missing' 
-      });    
+        title: title,
+        passProps:{
+          name: title,
+          branch: branch
+        }
+  });    
 }
     
 }

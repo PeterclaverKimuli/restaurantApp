@@ -21,10 +21,10 @@ export default class EmployeeInfoScreen extends React.Component{
           <Image source={require('../img/peterclaver.jpg')} style={{height:165, width: 165, borderRadius: 90, alignSelf:'center'}}></Image>
         </View>
         <ScrollView style={styles.container}>
-            <Text style={styles.textContainer}>Name: </Text>
+            <Text style={styles.textContainer}>Name:        {this.props.name}</Text>
             <Text style={styles.textContainer}>ID Number: </Text>
             <Text style={styles.textContainer}>Gender: </Text>
-            <Text style={styles.textContainer}>Branch: </Text>
+            <Text style={styles.textContainer}>Branch:      {this.props.branch}</Text>
             <Text style={styles.textContainer}>Position: </Text>
             <Text style={styles.textContainer}>Birthday: </Text>
             <Text style={styles.textContainer}>Home Address: </Text>

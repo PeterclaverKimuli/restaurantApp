@@ -200,7 +200,7 @@ export default class InputInfoScreen extends React.Component{
                     "User has been successfully added.",
                     [{text: 'OK'}]
                 ) 
-                this.firstname.clear(); this.lastname.clear(); this.birthday.clear(); this.address.clear()
+                this.firstname.clear(); this.lastname.clear(); this.address.clear()
                 this.username.clear(); this.password.clear(); this.password1.clear(); this.phonenumber.clear(); 
                 this.email.clear()
             }   
@@ -210,7 +210,7 @@ export default class InputInfoScreen extends React.Component{
                 "User has been successfully added.",
                 [{text: 'OK'}]
             ) 
-            this.firstname.clear(); this.lastname.clear(); this.birthday.clear(); this.address.clear()
+            this.firstname.clear(); this.lastname.clear(); this.address.clear()
             this.username.clear(); this.password.clear(); this.password1.clear(); this.phonenumber.clear(); 
             this.email.clear()
         } 

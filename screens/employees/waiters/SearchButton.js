@@ -1,6 +1,5 @@
 import React from 'react'
-import { Navigation } from 'react-native-navigation';
-import {StyleSheet, Image, TouchableOpacity, View, Alert} from 'react-native'
+import {StyleSheet, Image, TouchableOpacity, View} from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -27,12 +26,11 @@ const CustomButton = (props) => {
   return (
     <TouchableOpacity style={styles.container} 
             onPress = {() => navigator.showModal({
-                                    screen: 'restaurantApp.Search',
-                                    animated: false,
+                                    screen: 'restaurantApp.SearchWaiters'
                                   })}
     >
       <View >
-          <Image source = {require('../img/search.png')} style={[styles.button, {tintColor:'#FFF'}]}/>
+          <Image source = {require('../../img/search.png')} style={[styles.button, {tintColor:'#FFF'}]}/>
       </View>
     </TouchableOpacity>
   )

@@ -93,6 +93,10 @@ export default class DrawerScreen extends React.Component{
                             <MaterialIcons name="portrait" size={24} color={'#F50057'}/>   
                             <Text style={{paddingLeft:20}}>Add User</Text>
                         </TouchableOpacity>
+                        <TouchableOpacity style={styles.actions} onPress = {this.goToAddMenuItem}>
+                            <MaterialIcons name="restaurant-menu" size={24} color={'#F50057'}/>   
+                            <Text style={{paddingLeft:20}}>Add menu item</Text>
+                        </TouchableOpacity>
                         <TouchableOpacity style={styles.actions} onPress = {this.changePassword}>
                             <MaterialIcons name="create" size={24} color={'#F50057'}/>   
                             <Text style={{paddingLeft:20}}>Change Password</Text>
@@ -136,11 +140,33 @@ export default class DrawerScreen extends React.Component{
           });    
     }
 
+    goToAddMenuItem = () => {
+        this.props.navigator.showLightBox({
+            screen: 'restaurantApp.AddMenuItem',
+            passProps: {
+              title: 'Add Menu item',
+            },
+            style: {
+              backgroundBlur: 'dark',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              tapBackgroundToDismiss: true,
+            }
+        }) 
+        this.props.navigator.toggleDrawer({
+            side: 'left', 
+            animated: true, 
+            to: 'missing' 
+          });    
+    }
+
     goToBranch = (title) => {
         this.props.navigator.push({
             screen: 'restaurantApp.Branch',
-            title: title
-        });  
+            title: title,  
+            passProps:{
+                title
+            }
+        });
         this.props.navigator.toggleDrawer({
             side: 'left', 
             animated: true, 

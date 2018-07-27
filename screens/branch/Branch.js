@@ -52,14 +52,14 @@ export default class BranchScreen extends React.Component{
     return(
       <View style={styles.container}>
         <View style={styles.cards}>
-          <TouchableHighlight style={{flex:1}}>
+          <TouchableHighlight style={{flex:1}} onPress={() => this.goToMenu(this.props.title)} underlayColor="white">
             <Card containerStyle={{borderRadius:5}}
                   image={require('../img/menu.jpg')}>
               <Text style={{textAlign:'center', fontWeight:'bold'}}>MENU</Text>
               <Text style={{textAlign:'center'}}>Press to view the menu</Text></Card>
           </TouchableHighlight>
           
-          <TouchableHighlight style={{flex:1}}>
+          <TouchableHighlight style={{flex:1}} onPress={this.goToTransactions} underlayColor="white">
             <Card containerStyle={{borderRadius:5}}
                   image={require('../img/transaction.jpg')}>
               <Text style={{textAlign:'center', fontWeight:'bold'}}>TRANSACTIONS</Text>
@@ -68,14 +68,14 @@ export default class BranchScreen extends React.Component{
           </TouchableHighlight>
         </View>
         <View style={styles.cards}>
-          <TouchableHighlight style={{flex:1}}>
+          <TouchableHighlight style={{flex:1}} onPress={this.goToInventory} underlayColor="white">
             <Card containerStyle={{borderRadius:5}}
                   image={require('../img/inventory.jpg')}>
               <Text style={{textAlign:'center', fontWeight:'bold'}}>INVENTORY</Text>
               <Text style={{textAlign:'center'}}>Press to check the inventory</Text></Card>
           </TouchableHighlight>
 
-          <TouchableHighlight style={{flex:1}}>
+          <TouchableHighlight style={{flex:1}} onPress={this.goToEmployees} underlayColor="white">
             <Card containerStyle={{borderRadius:5}}
                   image={require('../img/employees.jpg')}>
               <Text style={{textAlign:'center', fontWeight:'bold'}}>EMPLOYEES</Text>
@@ -85,7 +85,89 @@ export default class BranchScreen extends React.Component{
       </View>
     )
   }
-    
+
+  goToTransactions = () =>{
+    this.props.navigator.push({
+        screen: 'restaurantApp.Transactions',
+        title: 'Transactions',
+        navigatorButtons: {
+          leftButtons: [
+            {
+              title: 'Back',
+              id: 'back', 
+              disabled: false, 
+              disableIconTint: false, // optional, by default the image colors are overridden and tinted to navBarButtonColor, set to true to keep the original image colors
+              showAsAction: 'ifRoom', // optional, Android only. Control how the button is displayed in the Toolbar. Accepted valued: 'ifRoom' (default) - Show this item as a button in an Action Bar if the system decides there is room for it. 'always' - Always show this item as a button in an Action Bar. 'withText' - When this item is in the action bar, always show it with a text label even if it also has an icon specified. 'never' - Never show this item as a button in an Action Bar.
+              buttonColor: '#FFF',
+              buttonFontSize: 16, 
+              buttonFontWeight: '600' 
+            }
+          ]
+        }
+    })            
+  }
+
+  goToMenu = (title) =>{
+    this.props.navigator.push({
+        screen: 'restaurantApp.Menu',
+        title: title + ' menu',
+        navigatorButtons: {
+          leftButtons: [
+            {
+              title: 'Back',
+              id: 'back', 
+              disabled: false, 
+              disableIconTint: false, // optional, by default the image colors are overridden and tinted to navBarButtonColor, set to true to keep the original image colors
+              showAsAction: 'ifRoom', // optional, Android only. Control how the button is displayed in the Toolbar. Accepted valued: 'ifRoom' (default) - Show this item as a button in an Action Bar if the system decides there is room for it. 'always' - Always show this item as a button in an Action Bar. 'withText' - When this item is in the action bar, always show it with a text label even if it also has an icon specified. 'never' - Never show this item as a button in an Action Bar.
+              buttonColor: '#FFF',
+              buttonFontSize: 16, 
+              buttonFontWeight: '600' 
+            }
+          ],
+          fab: {
+            collapsedId: 'take_order',
+            collapsedIcon: require('../img/take_order.png'),
+            collapsedIconColor: '#FFF', // optional
+            backgroundColor: '#F50057',
+          }
+        }
+    })            
+  }
+
+  goToInventory = () =>{
+    this.props.navigator.push({
+        screen: 'restaurantApp.Inventory',
+        title: 'Inventory',
+        navigatorButtons: {
+          leftButtons: [
+            {
+              title: 'Back',
+              id: 'back', 
+              disabled: false, 
+              disableIconTint: false, // optional, by default the image colors are overridden and tinted to navBarButtonColor, set to true to keep the original image colors
+              showAsAction: 'ifRoom', // optional, Android only. Control how the button is displayed in the Toolbar. Accepted valued: 'ifRoom' (default) - Show this item as a button in an Action Bar if the system decides there is room for it. 'always' - Always show this item as a button in an Action Bar. 'withText' - When this item is in the action bar, always show it with a text label even if it also has an icon specified. 'never' - Never show this item as a button in an Action Bar.
+              buttonColor: '#FFF',
+              buttonFontSize: 16, 
+              buttonFontWeight: '600' 
+            }
+          ]
+        }
+    })          
+  }
+  
+  goToEmployees = () =>{
+    this.props.navigator.showLightBox({
+      screen: 'restaurantApp.ChooseEmployee',
+      passProps: {
+        title: 'Employees',
+      },
+      style: {
+        backgroundBlur: 'dark',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        tapBackgroundToDismiss: true
+      }
+    })        
+  }
 }
 
 const styles = StyleSheet.create({
