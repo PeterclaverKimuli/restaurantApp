@@ -12,15 +12,14 @@ import {Card} from "react-native-elements"
 import SearchBar from 'react-native-searchbar';
 
 var items = [
-  {key: 'Waiter', branch:'Branch 1'},
-  {key: 'Waiter 2', branch:'Branch 2'},
-  {key: 'Waiter 3', branch:'Branch 3'},
-  {key: 'Waiter 4', branch:'Branch 4'},
-  {key: 'Waiter 5', branch:'Branch 5'},
-  {key: 'Waiter 6', branch:'Branch 6'}
+    {key: 'Manager 1', branch:'Branch 1'},
+    {key: 'Manager 2', branch:'Branch 2'},
+    {key: 'Manager 3', branch:'Branch 3'},
+    {key: 'Manager 4', branch:'Branch 4'},
+    {key: 'Manager 5', branch:'Branch 5'}
 ];
 
-export default class WaiterSearchScreen extends Component {
+export default class ManagerSearchScreen extends Component {
   static navigatorStyle = {
       navBarHidden: true,
       statusBarColor: '#F50057',
@@ -59,11 +58,11 @@ export default class WaiterSearchScreen extends Component {
     }else{
       return (
         <FlatList
-          showsVerticalScrollIndicator={false}
           style = {{height:listHeight}}
+          showsVerticalScrollIndicator={false}
           data={this.state.results}
           renderItem = {({item}) => 
-            <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToWaiter(item.key, item.branch)}> 
+            <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToManager(item.key, item.branch)}> 
               <Card containerStyle={styles.card}
                     image={require('../../img/avatar.png')}
                     imageStyle={{height: 130, width:240}}>
@@ -72,15 +71,15 @@ export default class WaiterSearchScreen extends Component {
                 <Text style={{color:'#0D47A1'}}>Press for more...</Text>
               </Card>
             </TouchableHighlight>
-            }
+          }
         />
       )
     }    
   }
 
-  goToWaiter = (title, branch) => {
+  goToManager = (title, branch) => {
     this.props.navigator.dismissModal({
-      animated: false,
+      animated: false, 
       animationType: 'fade' // 'fade' (for both) / 'slide-horizontal' (for android) does the pop have different transition animation (optional)
     })
 
@@ -104,7 +103,7 @@ export default class WaiterSearchScreen extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex:1}}>
           <View style={styles.searchContainer}>
             {this.showResults()}
           </View>
@@ -128,13 +127,14 @@ const styles = StyleSheet.create({
   searchContainer: {
     marginTop: 59, 
     marginLeft:0, 
-    backgroundColor:'#fff'
+    backgroundColor:'#fff',
   },
 
   missingResults:{
     color:'#000',
     fontSize: 18,
     height:Dimensions.get('window').height,
+    justifyContent:'center',  
     paddingLeft:Dimensions.get('window').width*0.3, 
     paddingTop:50
   },
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   card:{
     borderRadius:5, 
     height:200, 
-    width:240, 
+    width:240,
     backgroundColor:'#F50057',
     borderWidth:0,
     borderColor:'#fff'

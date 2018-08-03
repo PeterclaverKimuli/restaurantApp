@@ -28,7 +28,7 @@ export default class WaiterScreen extends React.Component{
       rightButtons: [
         {
           id: 'search',
-          component: 'CustomButton',
+          component: 'ManagerCustomButton',
           passProps: {
             navigator
           }
@@ -40,7 +40,7 @@ export default class WaiterScreen extends React.Component{
   static navigatorButtons = {
     fab: {
       collapsedId: 'add',
-      collapsedIcon: require('../img/add_user.png'),
+      collapsedIcon: require('../../img/add_user.png'),
       collapsedIconColor: '#FFF', // optional
       backgroundColor: '#F50057'
     }
@@ -91,9 +91,9 @@ export default class WaiterScreen extends React.Component{
           ]}
             renderItem={({item}) => 
               <TouchableHighlight style={{marginLeft:40}} underlayColor='#FFF' onPress={() => this.goToManager(item.key, item.branch)}>
-                <Card containerStyle={{borderRadius:5, height:220, width:260, backgroundColor:'#F50057'}}
-                      image={require('../img/avatar.png')}
-                      imageStyle={{height: 150, width:260}}>
+                <Card containerStyle={{borderRadius:5, height:200, width:240, borderWidth:0, borderColor:'#fff', backgroundColor:'#F50057'}}
+                      image={require('../../img/avatar.png')}
+                      imageStyle={{height: 130, width:240}}>
                   <Text style={{color:'#FFF'}}>Name: {item.key}</Text>
                   <Text style={{color:'#FFF'}}>Branch: {item.branch}</Text>
                   <Text style={{color:'#0D47A1'}}>Press for more...</Text>

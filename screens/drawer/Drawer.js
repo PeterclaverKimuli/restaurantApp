@@ -40,7 +40,7 @@ export default class DrawerScreen extends React.Component{
                     <Text style={{marginTop: 10, marginLeft:3, fontSize:16, fontStyle:'italic'}}>Username</Text>
                 </ImageBackground>
                 
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.branchContainer}>
                         <TouchableOpacity style={styles.actions} onPress = {this.goToHome}>
                             <MaterialIcons name="account-circle" size={24} color={'#F50057'}/>

@@ -16,16 +16,11 @@ export function addSectionItems(date, title, item3, item4){
     }else{
         for(var i = 0; i<menu.length; i++){
             if(found){
-                menu[i].data.push([item3, item4])
+                if(menu[i].title === title){
+                    menu[i].data.push([item3, item4]);
+                }
             }
         } 
     }
 }
-
-// var obj = {title:'halo', data:[['you', 'me']]}
-// menuTitle.push(obj)
-// addSectionItems('hal', 'you', 'me')
-// // console.log(pete.length+' halo')
-// console.log(menuTitle)
-// console.log(menuTitle[0].data[0][0])
 

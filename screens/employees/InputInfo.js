@@ -274,7 +274,7 @@ renderImage(image) {
     let { errors = {} } = this.state;  
 
     return(
-        <ScrollView style={styles.inputContainer} keyboardShouldPersistTaps='handled'>
+        <ScrollView style={styles.inputContainer} keyboardShouldPersistTaps='handled' showsVerticalScrollIndicator={false}>
             <ImageBackground source={this.state.image ? this.renderImage(this.state.image) : require('../img/avatar.png')} style={styles.userImage}>
                 <TouchableOpacity style={{alignSelf:'flex-end', paddingRight:15, paddingTop:5}} onPress={() => this.openConfirm(true)}>
                     <MaterialIcons name="create" size={24} color={'#F50057'}/>

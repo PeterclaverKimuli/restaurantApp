@@ -10,7 +10,7 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { TextField } from 'react-native-material-textfield' 
 import DatePicker from 'react-native-datepicker'
-import {addSectionItems} from '../helper'
+import {addSectionItems} from './helper'
 
 export default class AddMenuItemScreen extends Component {
   static navigatorStyle = {
@@ -91,7 +91,7 @@ export default class AddMenuItemScreen extends Component {
                 "Item has been successfully added.",
                 [{text: 'OK'}]
             ) 
-            this.type.clear(); this.item.clear(); this.price.clear();
+            this.item.clear(); this.price.clear();
         }
     } 
  }
@@ -148,7 +148,7 @@ export default class AddMenuItemScreen extends Component {
                         onFocus={this.onFocus}
                         returnKeyType = { "next" }
                         error={errors.type}
-                        onChangeText={ (type) => this.setState({ type:type })} 
+                        onChangeText={ (type) => this.setState({ type:type.toUpperCase() })} 
                         title = 'eg breakfast, lunch, drinks, etc'
                         titleTextStyle={styles.titleText}
                         autoCapitalize = {'words'}
@@ -190,23 +190,6 @@ export default class AddMenuItemScreen extends Component {
           </View>
       </View>
     )
-  }
-
-  goToManagers = () =>{
-    this.props.navigator.dismissLightBox();
-
-    this.props.navigator.push({
-        screen: 'restaurantApp.Managers',
-        title: 'Managers'
-    });           
-  }
-  goToWaiters = () =>{
-    this.props.navigator.dismissLightBox();
-
-    this.props.navigator.push({
-        screen: 'restaurantApp.Waiters',
-        title: 'Waiters',
-    });         
   }
 }
 

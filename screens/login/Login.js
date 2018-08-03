@@ -72,6 +72,7 @@ export default class LoginScreen extends React.Component{
                                    containerStyle={styles.input}
                                    onFocus={this.onFocus}
                                    returnKeyType = { "next" }
+                                   autoCapitalize = {'none'}
                                    onSubmitEditing={this.onSubmitUsername}
                                    blurOnSubmit={false}
                                    error={errors.username}
@@ -133,11 +134,6 @@ export default class LoginScreen extends React.Component{
                     ('password'===name && value !=='kimuli')){
                     errors[name] = name+' is wrong'
                 }
-                // Alert.alert(
-                //     'Wrong information',
-                //     'Either the username or password is wrong. Please re-enter your information',
-                //     [{text: 'OK'}]
-                //  )
             }
         });
 
